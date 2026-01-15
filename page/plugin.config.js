@@ -3,7 +3,7 @@ export default {
   displayName: 'nonraid Driver',
   description: 'nonraid Driver for MOS',
   version: '0.0.0',
-  icon: '',
+  icon: 'mdi-align-vertical-distribute',
   author: 'ich777',
   homepage: 'https://github.com/qvr/nonraid',
 };
