@@ -136,7 +136,7 @@ driver_download() {
   fi
 
   # Download asset and notify user
-  notify -t "Plugin" -m "Downloading DVB package $DRIVER_PKG" -p "normal"
+  notify -t "Plugin" -m "Downloading package $DRIVER_PKG" -p "normal"
   download_asset "$DRV_NAME" "$DRV_ASSET"
   download_asset "$DRV_NAME_MD5" "$DRV_ASSET_MD5"
   EXIT_STATUS=$?
