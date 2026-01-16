@@ -46,7 +46,7 @@ jobs:
       - name: Create package structure
         run: |
           VERSION=${{ steps.version.outputs.VERSION }}
-          PKG_NAME="nonraid_driver-${VERSION}-1+mos-plugin"
+          PKG_NAME="nonraid-${VERSION}-1+mos-plugin"
           PKG_DIR="${PKG_NAME}_amd64"
 
           # Create directory structure
@@ -59,7 +59,7 @@ jobs:
 
           # Create DEBIAN control file
           cat > ${PKG_DIR}/DEBIAN/control << EOF
-          Package: nonraid-driver
+          Package: nonraid
           Version: ${VERSION}-1+mos-plugin
           Architecture: amd64
           Maintainer: admin@minenet.at
@@ -69,7 +69,7 @@ jobs:
       - name: Build .deb package
         run: |
           VERSION=${{ steps.version.outputs.VERSION }}
-          PKG_NAME="nonraid_driver-${VERSION}-1+mos-plugin"
+          PKG_NAME="nonraid-${VERSION}-1+mos-plugin"
           PKG_DIR="${PKG_NAME}_amd64"
           DEB_FILE="${PKG_NAME}_amd64.deb"
 
@@ -87,8 +87,8 @@ jobs:
             ## nonraid Driver Plugin ${{ steps.version.outputs.VERSION }}
 
           files: |
-            nonraid_driver-${{ steps.version.outputs.VERSION }}-1+mos-plugin_amd64.deb
-            nonraid_driver-${{ steps.version.outputs.VERSION }}-1+mos-plugin_amd64.deb.md5
+            nonraid-${{ steps.version.outputs.VERSION }}-1+mos-plugin_amd64.deb
+            nonraid-${{ steps.version.outputs.VERSION }}-1+mos-plugin_amd64.deb.md5
           draft: false
           prerelease: false
         env:
