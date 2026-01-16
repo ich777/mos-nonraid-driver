@@ -1,5 +1,5 @@
 {
-  "name": "mos-plugin-dvb-drivers",
+  "name": "mos-nonraid-driver-plugin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
