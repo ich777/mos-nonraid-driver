@@ -9,11 +9,11 @@
     />
 
     <v-card v-else class="pa-0">
-      <v-card-title>Installed Driver</v-card-title>
+      <v-card-title>Locally Available Driver Package</v-card-title>
 
       <v-card-text class="pa-4">
         <div v-if="!driverInfo || !driverInfo.package" class="text-center text-grey py-4">
-          No driver installed
+          No Locally Available Driver Package found
         </div>
 
         <v-row v-else dense>
