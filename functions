@@ -12,6 +12,13 @@ else
   HEADER=()
 fi
 
+# Set Architecture
+if [ "$(get_arch)" == "amd64" ] ; then
+  ARCHITECTURE=""
+elif [ "$(get_arch)" == "arm64" ] ; then
+  ARCHITECTURE="_arm64"
+fi
+
 # Set variables for plugin
 PLG_NAME="nonraid-driver"
 DISPLAY_NAME="nonraid Driver"
@@ -125,10 +132,10 @@ driver_download() {
   get_releases "$UNAME"
 
   # Get driver names and assets from .deb and .md5
-  DRV_NAME=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith(".deb")) | .name')
-  DRV_ASSET=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith(".deb")) | .id')
-  DRV_NAME_MD5=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith(".deb.md5")) | .name')
-  DRV_ASSET_MD5=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith(".deb.md5")) | .id')
+  DRV_NAME=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" --arg arch "$ARCHITECTURE" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith($arch + ".deb")) | .name')
+  DRV_ASSET=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" --arg arch "$ARCHITECTURE" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith($arch + ".deb")) | .id')
+  DRV_NAME_MD5=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" --arg arch "$ARCHITECTURE" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith($arch + ".deb.md5")) | .name')
+  DRV_ASSET_MD5=$(cat /var/mos/mos-drivers/drivers-${UNAME}.json | jq --arg driver_pkg "$DRIVER_PKG" --arg arch "$ARCHITECTURE" -r '.assets[] | select(.name | startswith($driver_pkg) and endswith($arch + ".deb.md5")) | .id')
 
   # Safety Check
   if [ -z "$DRV_NAME" ] ; then
