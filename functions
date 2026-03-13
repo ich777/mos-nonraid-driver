@@ -14,7 +14,7 @@ fi
 
 # Set Architecture
 if [ "$(get_arch)" == "amd64" ] ; then
-  ARCHITECTURE=""
+  ARCHITECTURE="_amd64"
 elif [ "$(get_arch)" == "arm64" ] ; then
   ARCHITECTURE="_arm64"
 fi
